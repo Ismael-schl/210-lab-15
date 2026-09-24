@@ -7,6 +7,7 @@ using namespace std;
 
 const int SIZE = 4;
 
+//This block of code initializes class Movie which has member variables for screen writer, year released, and title. It also has a formatted printing method
 class Movie {
     private:
     string sWriter;
@@ -38,8 +39,10 @@ class Movie {
     }
 };
 
+//The main function reads data from a text file, stores it into temperary Movies, then places those into a container array. It then outputs the formmatted contents of the array.
 int main() {
     ifstream fin("moviedata.txt");
+//Note: The canvas instructions did not specify whether to have file read error code, hence its omission.
     Movie arr[SIZE];
     Movie temp;
     string title;
@@ -51,7 +54,13 @@ int main() {
         fin >> year;
         fin.ignore();
         getline(fin, writer);
-        
+        temp.setTitle(title);
+        temp.setYear(year);
+        temp.setWriter(writer);
+        arr[i] = temp;
     }
-
+    for (int j = 0; j < SIZE; j++) {
+        arr[j].print();
+    }
+    return 0;
 }
